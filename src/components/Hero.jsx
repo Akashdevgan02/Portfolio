@@ -6,7 +6,7 @@ const Hero = () => {
     return (
         <section
             id="hero"
-            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat bg-fixed"
+            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat hero-bg"
             style={{
                 backgroundImage: 'url(/photo_2.jpg)',
             }}

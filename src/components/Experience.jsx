@@ -22,7 +22,7 @@ const Experience = () => {
     return (
         <section
             id="experience"
-            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat bg-fixed"
+            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat experience-bg"
             style={{
                 backgroundImage: 'url(/photo_3.jpg)',
             }}
