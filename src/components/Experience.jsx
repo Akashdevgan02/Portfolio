@@ -1,6 +1,6 @@
 /**
  * Experience Component
- * Displays work experience with fixed background image and parallax effect
+ * Displays work experience with background image
  */
 const Experience = () => {
     const experiences = [
@@ -22,13 +22,12 @@ const Experience = () => {
     return (
         <section
             id="experience"
-            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat"
+            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat bg-fixed"
             style={{
                 backgroundImage: 'url(/photo_3.jpg)',
-                backgroundAttachment: 'fixed',
             }}
         >
-            <div className="absolute inset-0 bg-navy/80"></div>
+            <div className="absolute inset-0 bg-navy/80 z-10"></div>
 
             <div className="relative z-10 section w-full">
                 <h2 className="section-title">

@@ -78,21 +78,21 @@ const Nav = () => {
                     </div>
                 </div>
                 {isMobileMenuOpen && (
-                    <div className="md:hidden mt-4 pb-4 border-t border-lightest-navy bg-navy/95 backdrop-blur-sm rounded-b-lg">
+                    <div className="md:hidden mt-4 pb-4 border-t border-lightest-navy">
                         <div className="flex flex-col space-y-4 pt-4">
                             {navItems.map((item) => (
                                 <a
                                     key={item.name}
                                     href={item.href}
-                                    className="nav-link text-base py-2 px-4 hover:bg-light-navy rounded transition-colors"
+                                    className="nav-link"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {item.name}
                                 </a>
                             ))}
                             <a
-                                href="/Akash_Devgan_Resume_India.pdf"
-                                className="btn md:hidden text-center"
+                                href="/resume.pdf"
+                                className="btn md:hidden"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={() => setIsMobileMenuOpen(false)}

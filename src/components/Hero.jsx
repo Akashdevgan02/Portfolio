@@ -1,18 +1,17 @@
 /**
  * Hero Component
- * Landing section with fixed background image and parallax effect
+ * Landing section with background image
  */
 const Hero = () => {
     return (
         <section
             id="hero"
-            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat"
+            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat bg-fixed"
             style={{
                 backgroundImage: 'url(/photo_2.jpg)',
-                backgroundAttachment: 'fixed',
             }}
         >
-            <div className="absolute inset-0 bg-navy/80"></div>
+            <div className="absolute inset-0 bg-navy/80 z-10"></div>
 
             <div className="relative z-10 section w-full">
                 <div className="w-full">
