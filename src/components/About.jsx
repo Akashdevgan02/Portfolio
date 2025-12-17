@@ -14,7 +14,7 @@ const About = () => {
     return (
         <section id="about" className="section">
             <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
-                <div className="flex-1">
+                <div className="flex-1 order-2 md:order-1">
                     <h2 className="section-title">
                         About Me
                     </h2>
@@ -41,8 +41,8 @@ const About = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="hidden md:block flex-shrink-0 w-full md:w-auto">
-                    <div className="w-full md:w-64 h-64 border-2 border-green rounded-lg relative group">
+                <div className="flex-shrink-0 w-full md:w-auto order-1 md:order-2 flex justify-center md:justify-start">
+                    <div className="w-48 h-48 md:w-64 md:h-64 border-2 border-green rounded-lg relative group">
                         <div className="absolute inset-0 bg-green/10 rounded-lg transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
                         <div className="absolute inset-0 rounded-lg z-10 overflow-hidden">
                             <img
