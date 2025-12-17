@@ -1,16 +1,60 @@
-# React + Vite
+# Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive design for all devices
+- Interactive project showcase with modal popups
+- Parallax scrolling effects
+- Dark theme with smooth animations
+- Mobile-friendly navigation
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- Tailwind CSS 3
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/Akashdevgan02/Portfolio.git
+cd Portfolio
+npm install
+npm run dev
+```
+
+## 🏗️ Build
+
+```bash
+npm run build
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── About.jsx
+│   ├── Contact.jsx
+│   ├── Experience.jsx
+│   ├── Hero.jsx
+│   ├── Nav.jsx
+│   ├── Projects.jsx
+│   └── ProjectModal.jsx
+├── App.jsx
+└── main.jsx
+```
+
+## 👤 Author
+
+**Akash Devgan**
+
+- Email: akdevgan02@gmail.com
+- LinkedIn: [linkedin.com/in/akash-devgan](https://linkedin.com/in/akash-devgan)
+- GitHub: [@Akashdevgan02](https://github.com/Akashdevgan02)
+
+---
+
+⭐ If you like this project, please give it a star!
