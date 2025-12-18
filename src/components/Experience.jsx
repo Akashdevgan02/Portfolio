@@ -22,43 +22,55 @@ const Experience = () => {
     return (
         <section
             id="experience"
-            className="relative min-h-screen flex items-center pt-20 bg-cover bg-center bg-no-repeat experience-bg"
-            style={{
-                backgroundImage: 'url(/photo_3.jpg)',
-            }}
+            className="relative min-h-screen flex items-center pt-20"
         >
-            <div className="absolute inset-0 bg-navy/80 z-10"></div>
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    backgroundImage: 'url(/photo_3.jpg)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundAttachment: 'fixed',
+                    filter: 'brightness(0.4)',
+                }}
+            ></div>
 
             <div className="relative z-10 section w-full">
-                <h2 className="section-title">
+                <h2 className="section-title mb-12" style={{ color: '#FFFFFF' }}>
                     Where I've Worked
                 </h2>
-                <div className="mt-8">
+                <div className="mt-8 space-y-8">
                     {experiences.map((exp, index) => (
-                        <div key={index} className="mb-12">
-                            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <div key={index} className="border rounded-xl p-6 md:p-8 transition-all duration-300" style={{ backgroundColor: 'rgba(56, 73, 89, 0.95)', borderColor: 'rgba(232, 220, 198, 0.5)' }}>
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                                 <div>
-                                    <h3 className="text-xl font-semibold text-white">
-                                        {exp.title} <span className="text-green">@ {exp.company}</span>
+                                    <h3 className="text-2xl font-semibold mb-2" style={{ color: '#FFFFFF' }}>
+                                        {exp.title} <span style={{ color: '#88BDF2' }}>@ {exp.company}</span>
                                     </h3>
-                                    <p className="text-slate text-sm font-sf-mono mt-1">
+                                    <p className="text-sm font-sf-mono" style={{ color: '#BDDDFC' }}>
                                         {exp.period} • {exp.location}
                                     </p>
                                 </div>
                             </div>
-                            <ul className="space-y-2 mt-4">
+                            <ul className="space-y-3 mt-6">
                                 {exp.responsibilities.map((resp, idx) => (
-                                    <li key={idx} className="flex items-start text-light-slate">
-                                        <span className="text-green mr-3 mt-1">▹</span>
+                                    <li key={idx} className="flex items-start leading-relaxed" style={{ color: '#FFFFFF' }}>
+                                        <span className="w-2 h-2 mr-4 mt-2 flex-shrink-0 rounded-sm" style={{ backgroundColor: '#88BDF2' }}></span>
                                         <span>{resp}</span>
                                     </li>
                                 ))}
                             </ul>
-                            <div className="flex flex-wrap gap-2 mt-4">
+                            <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t" style={{ borderColor: 'rgba(232, 220, 198, 0.3)' }}>
                                 {exp.technologies.map((tech, idx) => (
                                     <span
                                         key={idx}
-                                        className="text-xs text-slate font-sf-mono px-2 py-1 bg-light-navy rounded"
+                                        className="text-xs font-sf-mono px-3 py-1.5 rounded-full"
+                                        style={{
+                                            color: '#88BDF2',
+                                            backgroundColor: 'rgba(136, 189, 242, 0.2)',
+                                            border: '1px solid rgba(136, 189, 242, 0.4)'
+                                        }}
                                     >
                                         {tech}
                                     </span>

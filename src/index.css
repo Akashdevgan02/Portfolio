@@ -1,6 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --navy: #384959;
+  --mid-navy: #4F5F6F;
+  --light-navy: #6A89A7;
+  --lightest-navy: #88BDF2;
+  --slate: #6A89A7;
+  --light-slate: #BDDDFC;
+  --lightest-slate: #BDDDFC;
+  --white: #ffffff;
+  --green: #88BDF2;
+  --beige: #E8DCC6;
+  --cream: #F5E6D3;
+}
 
 @layer base {
   * {
@@ -14,8 +30,121 @@
   }
 
   body {
-    @apply bg-navy text-slate font-calibre;
+    @apply bg-navy text-light-slate font-calibre;
+    background-color: var(--navy) !important;
+    color: var(--light-slate) !important;
     overflow-x: hidden;
+  }
+
+  /* Force new color scheme - comprehensive overrides */
+  .bg-navy,
+  [class*="bg-navy"] {
+    background-color: var(--navy) !important;
+  }
+
+  .bg-mid-navy,
+  [class*="bg-mid-navy"] {
+    background-color: var(--mid-navy) !important;
+  }
+
+  .bg-light-navy,
+  [class*="bg-light-navy"] {
+    background-color: var(--light-navy) !important;
+  }
+
+  /* Override text-green to use cream/beige */
+  nav a[href="#hero"],
+  nav .text-green,
+  .text-green:not(.btn):not(span.text-green):not([class*="hover"]),
+  .section-subtitle {
+    color: var(--cream) !important;
+  }
+
+  /* Keep original green for specific cases */
+  span.text-green,
+  [class*="text-green"]:not(nav a):not(.section-subtitle) {
+    color: var(--green) !important;
+  }
+
+  .text-light-slate,
+  [class*="text-light-slate"] {
+    color: var(--light-slate) !important;
+  }
+
+  .text-white,
+  [class*="text-white"],
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--white) !important;
+  }
+
+  /* Force text visibility in Hero and Experience - specific rules */
+  section#hero h1 {
+    color: var(--white) !important;
+  }
+
+  section#hero h2 {
+    color: var(--beige) !important;
+  }
+
+  section#hero p {
+    color: var(--light-slate) !important;
+  }
+
+  section#hero .section-subtitle {
+    color: #F5E6D3 !important;
+  }
+
+  section#hero h2 {
+    color: #E8DCC6 !important;
+  }
+
+  section#experience .section-title,
+  section#experience h3 {
+    color: var(--white) !important;
+  }
+
+  section#experience p,
+  section#experience li {
+    color: var(--light-slate) !important;
+  }
+
+  section#experience h3 span.text-green,
+  section#experience li span.text-green {
+    color: var(--green) !important;
+  }
+
+  .border-green,
+  [class*="border-green"] {
+    border-color: var(--green) !important;
+  }
+
+  /* Override all accent colors - comprehensive */
+  span.text-green,
+  a.text-green,
+  h3 .text-green,
+  .text-green\/80,
+  [class*="text-green"],
+  .section-subtitle,
+  p.text-green,
+  span[class*="green"],
+  *[class*="green"]:not(.btn) {
+    color: var(--green) !important;
+  }
+
+  /* Override borders */
+  [class*="border-green"],
+  .border-green {
+    border-color: var(--green) !important;
+  }
+
+  /* Override backgrounds with green */
+  [class*="bg-green"]:not(.btn) {
+    background-color: var(--green) !important;
   }
 }
 
@@ -25,42 +154,55 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-white mb-4;
+    @apply text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .section-subtitle {
-    @apply text-green text-sm md:text-base font-sf-mono mb-2;
+    @apply text-green text-base md:text-lg font-sf-mono mb-2 font-medium;
+    color: var(--cream) !important;
   }
 
   .nav-link {
-    @apply text-slate hover:text-green transition-colors duration-200 font-sf-mono text-sm;
+    @apply text-light-slate hover:text-green transition-colors duration-200 font-calibre text-base font-medium;
+    color: #E8DCC6 !important;
+  }
+
+  .nav-link:hover {
+    color: #F5E6D3 !important;
+  }
+
+  /* Force nav links to be beige */
+  nav .nav-link,
+  nav a.nav-link {
+    color: #E8DCC6 !important;
   }
 
   .btn {
-    @apply border border-green text-green px-6 py-3 rounded font-sf-mono text-sm hover:bg-green/10 transition-all duration-200;
+    @apply text-white px-8 py-3.5 rounded-full font-calibre font-semibold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-0;
+    background: linear-gradient(135deg, #E8DCC6 0%, #4F5F6F 100%) !important;
+    color: #384959 !important;
+  }
+
+  .btn:hover {
+    background: linear-gradient(135deg, #F5E6D3 0%, #6A89A7 100%) !important;
+    box-shadow: 0 10px 25px rgba(232, 220, 198, 0.3) !important;
+    color: #384959 !important;
   }
 
   .project-card {
-    @apply bg-light-navy rounded-lg p-6 hover:transform hover:translate-y-[-5px] transition-all duration-300;
+    @apply bg-light-navy rounded-xl p-6 hover:transform hover:translate-y-[-5px] transition-all duration-300;
   }
 }
 
 /* Background images - scroll on mobile, fixed on desktop */
-.hero-bg {
-  background-attachment: scroll;
-}
+@media (max-width: 767px) {
 
-.experience-bg {
-  background-attachment: scroll;
-}
-
-@media (min-width: 768px) {
-  .hero-bg {
-    background-attachment: fixed;
-  }
-
-  .experience-bg {
-    background-attachment: fixed;
+  section#hero div[style*="backgroundImage"],
+  section#experience div[style*="backgroundImage"] {
+    background-attachment: scroll !important;
+    position: fixed !important;
   }
 }
 
@@ -68,7 +210,7 @@
 section.bg-navy {
   position: relative;
   z-index: 20;
-  background-color: #0a192f;
+  background-color: var(--navy);
 }
 
 @layer utilities {
@@ -109,15 +251,15 @@ section.bg-navy {
 }
 
 .overflow-y-auto::-webkit-scrollbar-track {
-  background: #112240;
+  background: var(--light-navy);
   border-radius: 4px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb {
-  background: #64ffda;
+  background: var(--green);
   border-radius: 4px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: #52e0c4;
+  background: var(--light-slate);
 }

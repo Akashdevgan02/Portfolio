@@ -4,33 +4,50 @@ import { useState, useEffect } from 'react';
  * Nav Component
  * Fixed navigation bar with scroll-based background change and mobile menu
  */
-const Nav = () => {
+const Nav = ({ isModalOpen = false }) => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            const scrollY = window.scrollY;
+            const heroHeight = window.innerHeight; // Hero section is min-h-screen
+
+            // Show nav when scrolled past hero section
+            setIsVisible(scrollY > heroHeight * 0.8);
+            setIsScrolled(scrollY > 50);
         };
+
         window.addEventListener('scroll', handleScroll);
+        // Check initial state
+        handleScroll();
+
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const navItems = [
         { name: 'About', href: '#about' },
         { name: 'Experience', href: '#experience' },
-        { name: 'Work', href: '#work' },
+        { name: 'Projects', href: '#work' },
         { name: 'Contact', href: '#contact' },
     ];
 
+    // Hide nav when modal is open
+    const shouldShowNav = isVisible && !isModalOpen;
+
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-navy/90 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-                }`}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shouldShowNav ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+                } ${isScrolled ? 'shadow-2xl border-b' : ''}`}
+            style={isScrolled ? {
+                backgroundColor: 'rgba(56, 73, 89, 0.98)',
+                borderBottomColor: 'rgba(232, 220, 198, 0.2)'
+            } : { backgroundColor: 'transparent' }}
         >
-            <div className="max-w-5xl mx-auto px-6 py-4">
+            <div className="max-w-6xl mx-auto px-6 py-5">
                 <div className="flex items-center justify-between">
-                    <a href="#hero" className="text-green font-sf-mono text-xl font-bold hover:text-white transition-colors">
+                    <a href="#hero" className="font-sf-mono text-2xl font-bold transition-all duration-300 hover:scale-110 inline-block" style={{ color: '#E8DCC6' }}>
                         AD
                     </a>
                     <div className="hidden md:flex items-center space-x-8">
@@ -58,6 +75,7 @@ const Nav = () => {
                             className="md:hidden text-green focus:outline-none"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             aria-label="Toggle menu"
+                            style={{ color: '#E8DCC6' }}
                         >
                             <svg
                                 className="w-6 h-6"
@@ -79,7 +97,7 @@ const Nav = () => {
                 </div>
                 {isMobileMenuOpen && (
                     <div className="md:hidden mt-4 pb-4 border-t border-lightest-navy">
-                        <div className="bg-navy/95 backdrop-blur-sm rounded-lg shadow-xl mt-2 p-4">
+                        <div className="rounded-lg shadow-xl mt-2 p-4" style={{ backgroundColor: 'rgba(56, 73, 89, 0.98)' }}>
                             <div className="flex flex-col space-y-2">
                                 {navItems.map((item) => (
                                     <a

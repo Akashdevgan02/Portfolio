@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 /**
  * ProjectModal Component
  * Displays detailed project information in a modal overlay
  * Supports keyboard navigation (ESC to close) and prevents body scroll when open
+ * Uses React Portal to render outside of section stacking contexts
  */
 const ProjectModal = ({ project, isOpen, onClose }) => {
   useEffect(() => {
@@ -26,9 +28,10 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
   if (!isOpen || !project) return null;
 
-  return (
+  const modalContent = (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 flex items-center justify-center p-4 animate-fadeIn"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', zIndex: 99999 }}
       onClick={onClose}
     >
       <div
@@ -82,7 +85,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               <ul className="space-y-2">
                 {project.highlights.map((highlight, idx) => (
                   <li key={idx} className="flex items-start text-light-slate">
-                    <span className="text-green mr-3 mt-1">▹</span>
+                    <span className="w-2 h-2 mr-3 mt-2 flex-shrink-0 rounded-sm" style={{ backgroundColor: '#88BDF2' }}></span>
                     <span>{highlight}</span>
                   </li>
                 ))}
@@ -132,6 +135,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default ProjectModal;

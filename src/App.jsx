@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,14 +12,16 @@ import './App.css';
  * Portfolio website structure with navigation and all sections
  */
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="App">
-      <Nav />
+      <Nav isModalOpen={isModalOpen} />
       <main>
         <Hero />
         <About />
         <Experience />
-        <Projects />
+        <Projects onModalStateChange={setIsModalOpen} />
         <Contact />
       </main>
     </div>
