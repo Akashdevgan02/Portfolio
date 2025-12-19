@@ -35,7 +35,10 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative bg-light-navy rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-slideUp shadow-2xl"
+        className="relative rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-slideUp shadow-2xl"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(120, 150, 180, 1), rgba(106, 137, 167, 1))'
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         <button

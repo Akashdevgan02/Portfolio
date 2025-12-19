@@ -1,8 +1,23 @@
+import { useState, useEffect } from 'react';
+
 /**
  * Experience Component
  * Displays work experience with background image
  */
 const Experience = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const experiences = [
         {
             title: 'PHP Developer - Intern',
@@ -31,7 +46,7 @@ const Experience = () => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'fixed',
+                    backgroundAttachment: isMobile ? 'scroll' : 'fixed',
                     filter: 'brightness(0.4)',
                 }}
             ></div>

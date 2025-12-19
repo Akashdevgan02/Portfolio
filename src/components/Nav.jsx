@@ -48,7 +48,7 @@ const Nav = ({ isModalOpen = false }) => {
             <div className="max-w-6xl mx-auto px-6 py-5">
                 <div className="flex items-center justify-between">
                     <a href="#hero" className="font-sf-mono text-2xl font-bold transition-all duration-300 hover:scale-110 inline-block" style={{ color: '#E8DCC6' }}>
-                        AD
+                        Akash Devgan
                     </a>
                     <div className="hidden md:flex items-center space-x-8">
                         {navItems.map((item) => (

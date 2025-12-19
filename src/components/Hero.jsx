@@ -1,8 +1,23 @@
+import { useState, useEffect } from 'react';
+
 /**
  * Hero Component
  * Landing section with modern gradient design
  */
 const Hero = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <section
             id="hero"
@@ -15,7 +30,7 @@ const Hero = () => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'fixed',
+                    backgroundAttachment: isMobile ? 'scroll' : 'fixed',
                     filter: 'brightness(0.4)',
                 }}
             ></div>

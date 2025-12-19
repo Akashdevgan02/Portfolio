@@ -21,18 +21,18 @@ const Projects = ({ onModalStateChange }) => {
       technologies: ['React.js', 'Express.js', 'Firebase Firestore', 'Google Cloud App Engine', 'JWT'],
       period: 'February 2024 – April 2024',
       image: '/project-learnsphere.jpg',
-      liveUrl: '#',
-      githubUrl: '#'
+      liveUrl: 'http://learnsphere.cloud/',
+      githubUrl: 'https://github.com/dal-dos/LearnSphere'
     },
     {
       title: 'HappiMind',
       description: 'An AI-powered virtual therapist that provides dynamic, personalized interactions and support to users.',
       highlights: [
-        'Created an AI-powered virtual therapist that provides dynamic, personalized interactions',
+        'Leveraged OpenAI\'s API to generate context-aware, empathetic responses for users.',
         'Built the front-end using Next.js 14 with Shaden UI components',
         'Developed the database using Prisma ORM and established a serverless architecture with Supabase'
       ],
-      technologies: ['Next.js 14', 'Supabase', 'Prisma', 'Shaden', 'Figma', 'Vercel'],
+      technologies: ['Next.js 14', 'Supabase', 'Prisma', 'Shadcn/UI', 'Figma', 'Vercel'],
       period: 'February 2024 – March 2024',
       image: '/project-happimind.jpg',
       liveUrl: 'https://happimind.vercel.app',
@@ -50,22 +50,9 @@ const Projects = ({ onModalStateChange }) => {
       period: 'January 2024 – April 2024',
       image: '/project-tradetrove.jpg',
       liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/Akashdevgan02/Tradetrove.git'
     },
-    {
-      title: 'WeCare',
-      description: 'A caregiver-assistive Android app designed to enhance user experience for dementia patient care.',
-      highlights: [
-        'Led a team to develop a caregiver-assistive Android app',
-        'Implemented Realtime Firebase for efficient and secure data handling',
-        'Applied Agile practices and Git for project management'
-      ],
-      technologies: ['Java', 'Android Studio', 'Realtime Firebase', 'XML', 'Git'],
-      period: 'May 2022 – August 2022',
-      image: '/project-wecare.jpg',
-      liveUrl: '#',
-      githubUrl: '#'
-    },
+
     {
       title: 'Reinforcement Learning–Based Intrusion Detection System',
       description: 'Developed an intrusion detection system using reinforcement learning to analyze and forecast time-series data, improving the detection of anomalous and potentially malicious activity.',
@@ -87,8 +74,22 @@ const Projects = ({ onModalStateChange }) => {
         'Integrated interactive maps for real-time visualization of reported issues, allowing users to track incidents and support timely community responses'
       ],
       technologies: ['Angular', 'HTML/CSS'],
-      period: 'Fall 2023 – December 2023',
+      period: 'September 2023 – December 2023',
       image: '/project-safety.jpg',
+      liveUrl: '#',
+      githubUrl: '#'
+    },
+    {
+      title: 'WeCare',
+      description: 'A caregiver-assistive Android app designed to enhance user experience for dementia patient care.',
+      highlights: [
+        'Led a team to develop a caregiver-assistive Android app',
+        'Implemented Realtime Firebase for efficient and secure data handling',
+        'Applied Agile practices and Git for project management'
+      ],
+      technologies: ['Java', 'Android Studio', 'Realtime Firebase', 'XML', 'Git'],
+      period: 'May 2022 – August 2022',
+      image: '/project-wecare.jpg',
       liveUrl: '#',
       githubUrl: '#'
     },
@@ -147,10 +148,10 @@ const Projects = ({ onModalStateChange }) => {
             <div
               key={index}
               onClick={() => handleProjectClick(project)}
-              className="group cursor-pointer rounded-xl overflow-hidden border hover:transform hover:translate-y-[-6px] transition-all duration-300 shadow-xl"
+              className="group cursor-pointer rounded-xl overflow-hidden border hover:transform hover:translate-y-[-6px] transition-all duration-300 shadow-xl flex flex-col h-full"
               style={{ backgroundColor: 'rgba(79, 95, 111, 0.9)', borderColor: 'rgba(232, 220, 198, 0.3)' }}
             >
-              <div className="w-full h-40 overflow-hidden bg-navy relative">
+              <div className="w-full h-40 overflow-hidden bg-navy relative flex-shrink-0">
                 {project.image ? (
                   <img
                     src={project.image}
@@ -164,17 +165,17 @@ const Projects = ({ onModalStateChange }) => {
                 )}
               </div>
 
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-white mb-1.5 group-hover:text-cream transition-colors" style={{ color: 'var(--white)' }}>
+              <div className="p-4 flex flex-col flex-grow">
+                <h3 className="text-lg font-semibold text-white mb-1.5 group-hover:text-cream transition-colors line-clamp-2" style={{ color: 'var(--white)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {project.title}
                 </h3>
                 <p className="text-light-slate text-xs font-sf-mono mb-2" style={{ color: 'var(--beige)' }}>
                   {project.period}
                 </p>
-                <p className="text-light-slate text-xs leading-relaxed line-clamp-2" style={{ color: 'var(--light-slate)' }}>
+                <p className="text-light-slate text-xs leading-relaxed line-clamp-2 flex-grow" style={{ color: 'var(--light-slate)' }}>
                   {project.description}
                 </p>
-                <div className="mt-3 flex items-center text-green text-xs font-sf-mono group-hover:translate-x-2 transition-transform" style={{ color: 'var(--cream)' }}>
+                <div className="mt-3 flex items-center text-green text-xs font-sf-mono group-hover:translate-x-2 transition-transform flex-shrink-0" style={{ color: 'var(--cream)' }}>
                   View Project <span className="ml-2">→</span>
                 </div>
               </div>
