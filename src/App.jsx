@@ -5,13 +5,10 @@ import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import './App.css';
 
-/**
- * Main App Component
- * Portfolio website structure with navigation and all sections
- */
 function App() {
+  // Lift modal state to App level to control nav bar visibility when modal is open
+  // This prevents z-index conflicts and maintains proper focus management
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

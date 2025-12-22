@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 
-/**
- * Contact Component
- * Contact information and call-to-action section with background image
- */
 const Contact = () => {
     const [isMobile, setIsMobile] = useState(false);
 
+    // Detect mobile devices to switch background-attachment from 'fixed' to 'scroll'
+    // Mobile browsers have poor support for fixed backgrounds causing performance issues
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768);
@@ -23,6 +21,7 @@ const Contact = () => {
             id="contact"
             className="relative min-h-screen flex items-center pt-20"
         >
+            {/* Fixed background image with parallax effect on desktop, scroll on mobile */}
             <div
                 className="absolute inset-0 z-0"
                 style={{
@@ -31,7 +30,7 @@ const Contact = () => {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     backgroundAttachment: isMobile ? 'scroll' : 'fixed',
-                    filter: 'brightness(0.4)',
+                    filter: 'brightness(0.4)', // Darken image to improve text readability
                 }}
             ></div>
 
@@ -64,15 +63,15 @@ const Contact = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                             <div className="p-4 rounded-lg border" style={{ backgroundColor: 'rgba(79, 95, 111, 0.9)', borderColor: 'rgba(232, 220, 198, 0.2)' }}>
-                                <p className="text-green text-xs font-sf-mono mb-2" style={{ color: 'var(--cream)' }}>PHONE</p>
+                                <p className="text-xs font-sf-mono mb-2" style={{ color: 'var(--cream)' }}>PHONE</p>
                                 <p className="text-light-slate text-sm" style={{ color: 'var(--light-slate)' }}>+918284051201</p>
                             </div>
                             <div className="p-4 rounded-lg border" style={{ backgroundColor: 'rgba(79, 95, 111, 0.9)', borderColor: 'rgba(232, 220, 198, 0.2)' }}>
-                                <p className="text-green text-xs font-sf-mono mb-2" style={{ color: 'var(--cream)' }}>WHATSAPP</p>
+                                <p className="text-xs font-sf-mono mb-2" style={{ color: 'var(--cream)' }}>WHATSAPP</p>
                                 <p className="text-light-slate text-sm" style={{ color: 'var(--light-slate)' }}>+17789954279</p>
                             </div>
                             <div className="p-4 rounded-lg border" style={{ backgroundColor: 'rgba(79, 95, 111, 0.9)', borderColor: 'rgba(232, 220, 198, 0.2)' }}>
-                                <p className="text-green text-xs font-sf-mono mb-2" style={{ color: 'var(--cream)' }}>EMAIL</p>
+                                <p className="text-xs font-sf-mono mb-2" style={{ color: 'var(--cream)' }}>EMAIL</p>
                                 <p className="text-light-slate text-sm" style={{ color: 'var(--light-slate)' }}>akdevgan02@gmail.com</p>
                             </div>
                         </div>
@@ -80,7 +79,7 @@ const Contact = () => {
 
                     <div className="pt-8 border-t border-beige/20" style={{ borderColor: 'rgba(232, 220, 198, 0.2)' }}>
                         <p className="text-light-slate text-sm font-sf-mono" style={{ color: 'var(--light-slate)' }}>
-                            Designed & Built by <span className="text-green" style={{ color: 'var(--cream)' }}>Akash Devgan</span>
+                            Designed & Built by <span style={{ color: 'var(--cream)' }}>Akash Devgan</span>
                         </p>
                     </div>
                 </div>

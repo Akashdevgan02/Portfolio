@@ -1,7 +1,3 @@
-/**
- * About Component
- * Displays personal information, background, and technical skills
- */
 const About = () => {
     const skillsByCategory = {
         'Frontend': ['HTML/CSS', 'JavaScript', 'TypeScript', 'React', 'Angular', 'WebGL', 'jQuery'],
@@ -11,14 +7,11 @@ const About = () => {
     };
 
     return (
-        <section id="about" className="bg-navy relative overflow-hidden" style={{ backgroundColor: 'var(--navy)' }}>
+        <section id="about" className="bg-navy relative overflow-hidden">
             <div className="max-w-5xl mx-auto px-6 py-12 md:py-16 lg:py-20">
                 <div className="relative z-10">
-                    {/* Two-Column Grid Layout */}
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
-                        {/* Left Column - Heading, Subtitle, Intro, Content */}
                         <div className="lg:col-span-3">
-                            {/* Section Header */}
                             <div className="mb-4">
                                 <h2 className="text-3xl md:text-4xl font-bold mb-1.5" style={{ color: '#FFFFFF' }}>
                                     About Me
@@ -28,7 +21,6 @@ const About = () => {
                                 </p>
                             </div>
 
-                            {/* Main Content Paragraphs */}
                             <div className="space-y-4 leading-normal">
                                 <p className="text-base md:text-lg" style={{ color: '#BDDDFC' }}>
                                     I'm Akash. A software developer who enjoys building things carefully and with intention.
@@ -48,10 +40,8 @@ const About = () => {
                             </div>
                         </div>
 
-                        {/* Right Column - Photo & Quick Facts */}
                         <div className="lg:col-span-2">
                             <div className="space-y-4">
-                                {/* Profile Image */}
                                 <div className="w-full">
                                     <div className="rounded-2xl border-2 overflow-hidden shadow-xl" style={{ borderColor: 'rgba(245, 230, 211, 0.5)', backgroundColor: 'rgba(79, 95, 111, 0.3)' }}>
                                         <img
@@ -62,7 +52,6 @@ const About = () => {
                                     </div>
                                 </div>
 
-                                {/* Quick Facts */}
                                 <div className="rounded-xl border p-5" style={{ backgroundColor: 'rgba(79, 95, 111, 0.9)', borderColor: 'rgba(232, 220, 198, 0.3)' }}>
                                     <h3 className="text-sm font-sf-mono mb-3 uppercase tracking-wider" style={{ color: '#88BDF2' }}>
                                         Quick Facts
@@ -95,7 +84,6 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* Skills Section - Closer to main content */}
                     <div className="mt-10 md:mt-12">
                         <h3 className="text-2xl md:text-3xl font-bold mb-5" style={{ color: '#FFFFFF' }}>
                             Technologies I Work With

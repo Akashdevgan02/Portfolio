@@ -36,7 +36,8 @@
     overflow-x: hidden;
   }
 
-  /* Force new color scheme - comprehensive overrides */
+  /* Force color scheme overrides with !important to ensure consistency
+     Tailwind's utility classes can be overridden by component styles, so we need !important */
   .bg-navy,
   [class*="bg-navy"] {
     background-color: var(--navy) !important;
@@ -52,7 +53,6 @@
     background-color: var(--light-navy) !important;
   }
 
-  /* Override text-green to use cream/beige */
   nav a[href="#hero"],
   nav .text-green,
   .text-green:not(.btn):not(span.text-green):not([class*="hover"]),
@@ -60,7 +60,6 @@
     color: var(--cream) !important;
   }
 
-  /* Keep original green for specific cases */
   span.text-green,
   [class*="text-green"]:not(nav a):not(.section-subtitle) {
     color: var(--green) !important;
@@ -82,7 +81,8 @@
     color: var(--white) !important;
   }
 
-  /* Force text visibility in Hero and Experience - specific rules */
+  /* Force text colors in Hero and Experience sections for readability
+     These sections have dark background images, so text must be high contrast */
   section#hero h1 {
     color: var(--white) !important;
   }
@@ -99,16 +99,11 @@
     color: #F5E6D3 !important;
   }
 
-  section#hero h2 {
-    color: #E8DCC6 !important;
-  }
-
   section#experience .section-title,
   section#experience h3 {
     color: var(--white) !important;
   }
 
-  section#experience p,
   section#experience li {
     color: var(--light-slate) !important;
   }
@@ -123,7 +118,6 @@
     border-color: var(--green) !important;
   }
 
-  /* Override all accent colors - comprehensive */
   span.text-green,
   a.text-green,
   h3 .text-green,
@@ -136,13 +130,6 @@
     color: var(--green) !important;
   }
 
-  /* Override borders */
-  [class*="border-green"],
-  .border-green {
-    border-color: var(--green) !important;
-  }
-
-  /* Override backgrounds with green */
   [class*="bg-green"]:not(.btn) {
     background-color: var(--green) !important;
   }
@@ -165,18 +152,14 @@
   }
 
   .nav-link {
-    @apply text-light-slate hover:text-green transition-colors duration-200 font-calibre text-base font-medium;
+    @apply font-calibre text-base font-medium transition-all duration-300;
     color: #E8DCC6 !important;
+    display: inline-block;
   }
 
   .nav-link:hover {
-    color: #F5E6D3 !important;
-  }
-
-  /* Force nav links to be beige */
-  nav .nav-link,
-  nav a.nav-link {
-    color: #E8DCC6 !important;
+    color: #88BDF2 !important;
+    transform: translateY(-2px);
   }
 
   .btn {
@@ -196,17 +179,8 @@
   }
 }
 
-/* Background images - scroll on mobile, fixed on desktop */
-@media (max-width: 767px) {
-
-  section#hero div[style*="backgroundImage"],
-  section#experience div[style*="backgroundImage"] {
-    background-attachment: scroll !important;
-    position: fixed !important;
-  }
-}
-
-/* Ensure sections with solid backgrounds are above fixed backgrounds */
+/* Sections with solid backgrounds need higher z-index to appear above fixed background images
+   This ensures About, Projects, and Contact sections properly cover the fixed backgrounds */
 section.bg-navy {
   position: relative;
   z-index: 20;
@@ -245,7 +219,6 @@ section.bg-navy {
   }
 }
 
-/* Custom Scrollbar for Modal */
 .overflow-y-auto::-webkit-scrollbar {
   width: 8px;
 }

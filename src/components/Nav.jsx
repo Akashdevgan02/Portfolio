@@ -1,39 +1,51 @@
 import { useState, useEffect } from 'react';
 
-/**
- * Nav Component
- * Fixed navigation bar with scroll-based background change and mobile menu
- */
 const Nav = ({ isModalOpen = false }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('');
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
-            const heroHeight = window.innerHeight; // Hero section is min-h-screen
+            const heroHeight = window.innerHeight;
 
-            // Show nav when scrolled past hero section
+            // Show nav bar after scrolling past 80% of hero section height
+            // This keeps the hero section clean while providing navigation when needed
             setIsVisible(scrollY > heroHeight * 0.8);
+            // Add background and shadow when scrolled past 50px for visual feedback
             setIsScrolled(scrollY > 50);
+
+            // Detect which section is currently in view for active state highlighting
+            // A section is considered active when its top is above 100px from viewport top
+            // and its bottom is below 100px (section is in the middle of viewport)
+            const sections = ['about', 'experience', 'projects', 'contact'];
+            const currentSection = sections.find(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    return rect.top <= 100 && rect.bottom >= 100;
+                }
+                return false;
+            });
+            setActiveSection(currentSection || '');
         };
 
         window.addEventListener('scroll', handleScroll);
-        // Check initial state
-        handleScroll();
+        handleScroll(); // Check initial scroll position on mount
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const navItems = [
-        { name: 'About', href: '#about' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Projects', href: '#work' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'About', href: '#about', id: 'about' },
+        { name: 'Experience', href: '#experience', id: 'experience' },
+        { name: 'Projects', href: '#projects', id: 'projects' },
+        { name: 'Contact', href: '#contact', id: 'contact' },
     ];
 
-    // Hide nav when modal is open
+    // Hide nav when modal is open to prevent z-index conflicts and maintain focus
     const shouldShowNav = isVisible && !isModalOpen;
 
     return (
@@ -56,7 +68,6 @@ const Nav = ({ isModalOpen = false }) => {
                                 key={item.name}
                                 href={item.href}
                                 className="nav-link"
-                                onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {item.name}
                             </a>
@@ -72,7 +83,7 @@ const Nav = ({ isModalOpen = false }) => {
                             Resume
                         </a>
                         <button
-                            className="md:hidden text-green focus:outline-none"
+                            className="md:hidden focus:outline-none"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             aria-label="Toggle menu"
                             style={{ color: '#E8DCC6' }}
@@ -96,29 +107,48 @@ const Nav = ({ isModalOpen = false }) => {
                     </div>
                 </div>
                 {isMobileMenuOpen && (
-                    <div className="md:hidden mt-4 pb-4 border-t border-lightest-navy">
-                        <div className="rounded-lg shadow-xl mt-2 p-4" style={{ backgroundColor: 'rgba(56, 73, 89, 0.98)' }}>
-                            <div className="flex flex-col space-y-2">
-                                {navItems.map((item) => (
+                    <div className="md:hidden mt-4 pb-4 border-t" style={{ borderColor: 'rgba(232, 220, 198, 0.15)' }}>
+                        <div className="mt-3 flex flex-col space-y-1">
+                            {navItems.map((item) => {
+                                const isActive = activeSection === item.id;
+                                return (
                                     <a
                                         key={item.name}
                                         href={item.href}
-                                        className="text-white text-lg font-medium py-3 px-4 hover:bg-light-navy hover:text-green rounded transition-all duration-200"
+                                        className={`relative py-3 px-4 font-sf-mono transition-all duration-200 ${isActive
+                                            ? 'text-lg font-semibold'
+                                            : 'text-base font-medium'
+                                            }`}
                                         onClick={() => setIsMobileMenuOpen(false)}
+                                        style={{
+                                            color: isActive ? '#88BDF2' : '#E8DCC6',
+                                            borderLeft: isActive ? '2px solid #88BDF2' : '2px solid transparent',
+                                            paddingLeft: isActive ? '14px' : '16px'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            if (!isActive) {
+                                                e.target.style.color = '#88BDF2';
+                                            }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            if (!isActive) {
+                                                e.target.style.color = '#E8DCC6';
+                                            }
+                                        }}
                                     >
                                         {item.name}
                                     </a>
-                                ))}
-                                <a
-                                    href="/Akash_Devgan_Resume_India.pdf"
-                                    className="btn mt-2 text-center"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    Resume
-                                </a>
-                            </div>
+                                );
+                            })}
+                            <a
+                                href="/Akash_Devgan_Resume_India.pdf"
+                                className="btn mt-4 text-center"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Resume
+                            </a>
                         </div>
                     </div>
                 )}

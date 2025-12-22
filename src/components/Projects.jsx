@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import ProjectModal from './ProjectModal';
 
-/**
- * Projects Component
- * Displays a grid of project cards with modal functionality for detailed views
- */
 const Projects = ({ onModalStateChange }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +24,7 @@ const Projects = ({ onModalStateChange }) => {
       title: 'HappiMind',
       description: 'An AI-powered virtual therapist that provides dynamic, personalized interactions and support to users.',
       highlights: [
-        'Leveraged OpenAI\'s API to generate context-aware, empathetic responses for users.',
+        'Leveraged OpenAI\'s API to generate context-aware, empathetic responses for users',
         'Built the front-end using Next.js 14 with Shaden UI components',
         'Developed the database using Prisma ORM and established a serverless architecture with Supabase'
       ],
@@ -77,21 +73,21 @@ const Projects = ({ onModalStateChange }) => {
       period: 'September 2023 – December 2023',
       image: '/project-safety.jpg',
       liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/Akashdevgan02/Community-Safety-App'
     },
     {
       title: 'WeCare',
       description: 'A caregiver-assistive Android app designed to enhance user experience for dementia patient care.',
       highlights: [
-        'Led a team to develop a caregiver-assistive Android app',
-        'Implemented Realtime Firebase for efficient and secure data handling',
-        'Applied Agile practices and Git for project management'
+        'Led the development of a caregiver-assistive Android application aimed at improving daily care and coordination for dementia patients.',
+        'Built a secure, real-time data system using Firebase to enable efficient patient data management and caregiver communication',
+        'Applied Agile development practices and Git-based collaboration to plan sprints, manage tasks, and deliver features iteratively'
       ],
       technologies: ['Java', 'Android Studio', 'Realtime Firebase', 'XML', 'Git'],
       period: 'May 2022 – August 2022',
       image: '/project-wecare.jpg',
       liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/Akashdevgan02/WeCare'
     },
     {
       title: 'Beelogz',
@@ -121,6 +117,7 @@ const Projects = ({ onModalStateChange }) => {
     }
   ];
 
+  // Notify parent component (App) when modal opens/closes to hide nav bar
   const handleProjectClick = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
@@ -138,11 +135,12 @@ const Projects = ({ onModalStateChange }) => {
   };
 
   return (
-    <section id="work" className="section bg-navy relative overflow-hidden" style={{ backgroundColor: 'var(--navy)' }}>
+    <section id="projects" className="section bg-navy relative overflow-hidden">
       <div className="relative z-10">
         <h2 className="section-title mb-4">
           Some Things I've Built
         </h2>
+        {/* Responsive grid: 1 col mobile, 2 md, 3 lg, 4 xl */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {projects.map((project, index) => (
             <div
@@ -151,6 +149,7 @@ const Projects = ({ onModalStateChange }) => {
               className="group cursor-pointer rounded-xl overflow-hidden border hover:transform hover:translate-y-[-6px] transition-all duration-300 shadow-xl flex flex-col h-full"
               style={{ backgroundColor: 'rgba(79, 95, 111, 0.9)', borderColor: 'rgba(232, 220, 198, 0.3)' }}
             >
+              {/* Project image container - fixed height to maintain card consistency */}
               <div className="w-full h-40 overflow-hidden bg-navy relative flex-shrink-0">
                 {project.image ? (
                   <img
@@ -160,22 +159,26 @@ const Projects = ({ onModalStateChange }) => {
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: 'rgba(106, 137, 167, 0.5)' }}>
-                    <span className="text-green text-3xl font-bold">{project.title.charAt(0)}</span>
+                    <span className="text-3xl font-bold" style={{ color: '#88BDF2' }}>{project.title.charAt(0)}</span>
                   </div>
                 )}
               </div>
 
+              {/* Card content - flex-grow ensures "View Project" stays at bottom */}
               <div className="p-4 flex flex-col flex-grow">
+                {/* Title limited to 2 lines with ellipsis for consistent card heights */}
                 <h3 className="text-lg font-semibold text-white mb-1.5 group-hover:text-cream transition-colors line-clamp-2" style={{ color: 'var(--white)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {project.title}
                 </h3>
                 <p className="text-light-slate text-xs font-sf-mono mb-2" style={{ color: 'var(--beige)' }}>
                   {project.period}
                 </p>
+                {/* Description uses flex-grow to push "View Project" link to bottom */}
                 <p className="text-light-slate text-xs leading-relaxed line-clamp-2 flex-grow" style={{ color: 'var(--light-slate)' }}>
                   {project.description}
                 </p>
-                <div className="mt-3 flex items-center text-green text-xs font-sf-mono group-hover:translate-x-2 transition-transform flex-shrink-0" style={{ color: 'var(--cream)' }}>
+                {/* View Project link always at bottom due to flex-shrink-0 and parent flex-grow */}
+                <div className="mt-3 flex items-center text-xs font-sf-mono group-hover:translate-x-2 transition-transform flex-shrink-0" style={{ color: 'var(--cream)' }}>
                   View Project <span className="ml-2">→</span>
                 </div>
               </div>

@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react';
 
-/**
- * Experience Component
- * Displays work experience with background image
- */
 const Experience = () => {
     const [isMobile, setIsMobile] = useState(false);
 
+    // Detect mobile devices to switch background-attachment from 'fixed' to 'scroll'
+    // Mobile browsers have poor support for fixed backgrounds causing performance issues
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768);
         };
-        
+
         checkMobile();
         window.addEventListener('resize', checkMobile);
-        
+
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
@@ -39,6 +37,7 @@ const Experience = () => {
             id="experience"
             className="relative min-h-screen flex items-center pt-20"
         >
+            {/* Fixed background image with parallax effect on desktop, scroll on mobile */}
             <div
                 className="absolute inset-0 z-0"
                 style={{
@@ -47,7 +46,7 @@ const Experience = () => {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     backgroundAttachment: isMobile ? 'scroll' : 'fixed',
-                    filter: 'brightness(0.4)',
+                    filter: 'brightness(0.4)', // Darken image to improve text readability
                 }}
             ></div>
 
@@ -63,7 +62,7 @@ const Experience = () => {
                                     <h3 className="text-2xl font-semibold mb-2" style={{ color: '#FFFFFF' }}>
                                         {exp.title} <span style={{ color: '#88BDF2' }}>@ {exp.company}</span>
                                     </h3>
-                                    <p className="text-sm font-sf-mono" style={{ color: '#BDDDFC' }}>
+                                    <p className="text-sm font-sf-mono" style={{ color: '#E8DCC6' }}>
                                         {exp.period} • {exp.location}
                                     </p>
                                 </div>

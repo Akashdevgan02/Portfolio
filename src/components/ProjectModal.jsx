@@ -1,13 +1,8 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-/**
- * ProjectModal Component
- * Displays detailed project information in a modal overlay
- * Supports keyboard navigation (ESC to close) and prevents body scroll when open
- * Uses React Portal to render outside of section stacking contexts
- */
 const ProjectModal = ({ project, isOpen, onClose }) => {
+  // Handle ESC key to close modal and prevent body scroll when modal is open
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
@@ -17,6 +12,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
+      // Prevent background scrolling when modal is open
       document.body.style.overflow = 'hidden';
     }
 
@@ -34,16 +30,20 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
       style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', zIndex: 99999 }}
       onClick={onClose}
     >
+      {/* Stop propagation to prevent backdrop click from closing when clicking modal content */}
       <div
         className="relative rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-slideUp shadow-2xl"
         style={{
-          background: 'linear-gradient(to bottom, rgba(120, 150, 180, 1), rgba(106, 137, 167, 1))'
+          background: 'linear-gradient(to bottom, rgba(79, 95, 111, 1), rgba(56, 73, 89, 1))'
         }}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate hover:text-white transition-colors z-10"
+          className="absolute top-4 right-4 transition-colors z-10"
+          style={{ color: '#E8DCC6' }}
+          onMouseEnter={(e) => e.target.style.color = '#FFFFFF'}
+          onMouseLeave={(e) => e.target.style.color = '#E8DCC6'}
           aria-label="Close modal"
         >
           <svg
@@ -71,23 +71,23 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
         <div className="p-6 md:p-8">
           <div className="mb-4">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            <h3 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: '#FFFFFF' }}>
               {project.title}
             </h3>
-            <p className="text-green text-sm md:text-base font-sf-mono mb-4">
+            <p className="text-sm md:text-base font-sf-mono mb-4" style={{ color: '#88BDF2' }}>
               {project.period}
             </p>
-            <p className="text-lg text-light-slate mb-6">
+            <p className="text-lg mb-6" style={{ color: '#E8DCC6' }}>
               {project.description}
             </p>
           </div>
 
           {project.highlights && project.highlights.length > 0 && (
             <div className="mb-6">
-              <h4 className="text-white font-semibold mb-3">Key Features:</h4>
+              <h4 className="font-semibold mb-3" style={{ color: '#FFFFFF' }}>Key Features:</h4>
               <ul className="space-y-2">
                 {project.highlights.map((highlight, idx) => (
-                  <li key={idx} className="flex items-start text-light-slate">
+                  <li key={idx} className="flex items-start" style={{ color: '#E8DCC6' }}>
                     <span className="w-2 h-2 mr-3 mt-2 flex-shrink-0 rounded-sm" style={{ backgroundColor: '#88BDF2' }}></span>
                     <span>{highlight}</span>
                   </li>
@@ -98,12 +98,17 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
           {project.technologies && project.technologies.length > 0 && (
             <div className="mb-6">
-              <h4 className="text-white font-semibold mb-3">Technologies:</h4>
+              <h4 className="font-semibold mb-3" style={{ color: '#FFFFFF' }}>Technologies:</h4>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="text-xs text-slate font-sf-mono px-3 py-1 bg-navy rounded border border-lightest-navy"
+                    className="text-xs font-sf-mono px-3 py-1.5 rounded border"
+                    style={{
+                      color: '#88BDF2',
+                      backgroundColor: 'rgba(136, 189, 242, 0.15)',
+                      borderColor: 'rgba(136, 189, 242, 0.4)'
+                    }}
                   >
                     {tech}
                   </span>
@@ -112,7 +117,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             </div>
           )}
 
-          <div className="flex flex-wrap gap-4 mt-6 pt-6 border-t border-lightest-navy">
+          <div className="flex flex-wrap gap-4 mt-6 pt-6 border-t" style={{ borderColor: 'rgba(232, 220, 198, 0.3)' }}>
             {project.liveUrl && project.liveUrl !== '#' && (
               <a
                 href={project.liveUrl}
@@ -139,6 +144,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     </div>
   );
 
+  // Use React Portal to render modal directly to document.body
+  // This ensures the modal appears above all other content regardless of z-index stacking contexts
   return createPortal(modalContent, document.body);
 };
 
